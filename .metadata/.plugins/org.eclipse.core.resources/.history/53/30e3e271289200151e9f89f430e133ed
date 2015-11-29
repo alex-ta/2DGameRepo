@@ -1,0 +1,26 @@
+package logic;
+
+import java.util.ArrayList;
+
+import console.GameConsole;
+import gui.Container;
+import gui.Window;
+import gui.WindowInterface;
+import menu.Menu;
+
+public class GameFlow {
+	
+	private final WindowInterface gamewindow;
+	private final Menu menu;
+	private final ArrayList<Container> game;
+	private final GameConsole console;
+
+	public GameFlow(){
+		gamewindow = new Window();
+		menu = new Menu();
+		game = new ArrayList<Container>();
+		console = new GameConsole();
+	}
+	
+	
+}

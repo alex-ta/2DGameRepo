@@ -1,0 +1,46 @@
+package logic;
+
+import java.util.ArrayList;
+
+import clock.Clock;
+import gui.Container;
+import gui.Window;
+import gui.WindowInterface;
+import io.Console;
+import menu.Menu;
+
+public class GameFlow {
+	
+	private final WindowInterface gamewindow;
+	private final Menu menu;
+	private final ArrayList<Container> game;
+	private final Clock clock;
+	private final GameClock time;
+	
+	
+	public GameFlow(){
+		new Console();
+		clock = new Clock();
+		new Thread(clock).start();
+		time = new GameClock();
+		clock.addCall(time);
+		gamewindow = new Window();
+		menu = new Menu();
+		game = new ArrayList<Container>();
+	}
+	
+	
+	
+	
+	public WindowInterface getGamewindow() {
+		return gamewindow;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public ArrayList<Container> getGame() {
+		return game;
+	}
+}

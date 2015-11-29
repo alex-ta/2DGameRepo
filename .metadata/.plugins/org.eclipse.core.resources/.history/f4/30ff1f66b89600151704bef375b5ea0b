@@ -1,0 +1,9 @@
+package menu;
+
+public abstract class OptionCall {
+
+	public void call(String option){
+		
+	}
+
+}

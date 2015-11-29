@@ -1,0 +1,28 @@
+package io;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+
+import console.GameConsole;
+
+public class XMLParser{
+	public static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private DocumentBuilder document;
+	
+	public XMLParser(String fileName) {
+		try {
+			document = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			GameConsole.print(e.getMessage());
+		}
+	}
+	
+	public void parse(String xml){
+	Document document = factory.newDocumentBuilder();
+	
+	}
+
+}

@@ -1,0 +1,25 @@
+package menu;
+
+import java.util.ArrayList;
+
+public class Menu {
+	
+	private final ArrayList<String> entries;
+	
+	public Menu(){
+		this.entries = new ArrayList<String>();
+	}
+	
+	public void addEntries(String...entries){
+		for(String s: entries){
+			this.entries.add(s);
+		}
+		this.update();
+	}
+
+	private void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

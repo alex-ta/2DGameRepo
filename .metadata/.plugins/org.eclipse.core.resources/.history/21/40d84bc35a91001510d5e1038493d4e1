@@ -1,0 +1,32 @@
+package menu;
+
+import java.util.ArrayList;
+
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+public class Menu extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 22112015L;
+	private final ArrayList<String> entries;
+	
+	public Menu(){
+		this.entries = new ArrayList<String>();
+	}
+	
+	public void addEntries(String...entries){
+		for(String s: entries){
+			this.entries.add(s);
+		}
+		this.update();
+	}
+
+	private void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,77 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.io.File;
+
+import javax.swing.JFrame;
+
+import clock.Clock;
+import clock.DrawCall;
+import gui.Container;
+import gui.ImageReader;
+import gui.Window;
+import io.Console;
+import io.Reader;
+import io.XMLParser;
+import map.Map;
+import map.Tile;
+import menu.Menu;
+
+public class Main {
+
+	
+	public static void main(String[] args){
+		new Console();
+		Map map = new Map();
+		map.add(new Tile("img1",false,0,0));
+		map.add(new Tile("img2",false,0,1));
+		map.add(new Tile("img3",false,0,2));
+		map.add(new Tile("img4",false,0,3));
+		
+		Reader parser = new Reader("default.map");
+		parser.save(map);
+		parser.load(map);
+		System.out.println(map.save());
+		Clock clock = new Clock();
+		DrawCall c = new DrawCall();
+		//new Thread(clock).start();
+		clock.addCall(c);
+		
+		
+		Window w = new Window();
+		
+		BufferedImage img = new BufferedImage(16 , 16, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = (Graphics2D) img.getGraphics();
+        g.setColor(Color.BLUE);
+        g.fillRect(0, 0, img.getWidth(), img.getHeight());
+        g.dispose();
+		
+        /*
+		Container cx = new Container(600,400);
+		
+		cx.setColor(255, 255, 0, 255);
+		cx.addTile(img, 0);
+		
+		w.init(cx);
+		cx.repaint();
+		
+		ImageReader read = new ImageReader();
+		BufferedImage tile = read.read("128-59.jpg");
+		cx.addTile(tile, 3);
+		
+		cx.repaint();
+		*/
+        
+        XMLParser parser2 = new XMLParser();
+		Document doc = parser2.parse(new File("img.tmx"));
+        
+        /*
+		Menu menu = new Menu();
+		menu.addEntries("Start","Stop","Help");
+		w.init(menu);
+		*/
+	}
+	
+}

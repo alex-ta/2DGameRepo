@@ -1,0 +1,55 @@
+package menu;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
+
+public class MenuRender extends JPanel implements ListCellRenderer<String>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 22112015L;
+	private final JLabel text = new JLabel();
+	private final JLabel index = new JLabel();
+	public static Color background = Color.white;
+	public static Color hover = Color.lightGray;
+	
+	
+	public MenuRender(int top,int border){
+		setLayout(new BorderLayout(border,top));
+		setFontSize(text);
+		setFontSize(index);
+		add(text,BorderLayout.CENTER);
+		add(index,BorderLayout.WEST);
+	}
+	
+	@Override
+	public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
+			boolean isSelected, boolean cellHasFocus) {
+			this.text.setText(value);
+			this.index.setText(index+") ");		
+			
+			if(!isSelected){
+				this.setBackground(background);
+			}else{
+				this.setBackground(hover);	
+			}
+			
+		return this;
+	}
+	
+	public void setFontSize(JLabel label){
+		Font f = label.getFont();
+		Font newF = new Font(f.getFontName(), f.getStyle(), f.getSize()+20);
+		label.setFont(newF);
+	}
+
+}

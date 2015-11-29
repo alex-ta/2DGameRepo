@@ -1,0 +1,61 @@
+package io;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import console.GameConsole;
+
+public class XMLParser{
+	public static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private DocumentBuilder document;
+	
+	public XMLParser(String fileName) {
+		try {
+			document = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			GameConsole.print(e.getMessage());
+		}
+	}
+	
+	public void parse(File file){
+		try {
+			document.parse(file);
+		} catch (SAXException | IOException e) {
+			GameConsole.print(e.getMessage());
+		}
+	}
+	
+	public void write(File file){
+		Document d = document.newDocument();
+		Element root = d.createElement("");
+		d.appendChild(root);
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Transformer trans;
+		try {
+			trans = factory.newTransformer();
+			DOMSource source = new DOMSource(d);
+			StreamResult stream = new StreamResult(file);
+			trans.setOutputProperty(OutputKeys.INDENT,"yes");
+			trans.transform(source,stream);
+		} catch (TransformerException e) {
+			GameConsole.print(e.getMessage());
+		}
+		
+	}
+
+}

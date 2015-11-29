@@ -1,0 +1,46 @@
+package menu;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
+
+public class MenuRender extends JPanel implements ListCellRenderer<String>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 22112015L;
+	private JLabel text = new JLabel();
+	public static Color background = Color.CYAN;
+	public static Color hover = Color.GRAY;
+	
+	
+	public MenuRender(){
+		setLayout(new BorderLayout());
+		JPanel panelText = new JPanel(new GridLayout(0, 1));
+		panelText.add(text);
+		add(panelText);
+	}
+	
+	@Override
+	public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
+			boolean isSelected, boolean cellHasFocus) {
+			text.setText(value);
+			text.setOpaque(true);
+			
+			if(isSelected){
+				this.setForeground(background);
+			}else{
+				this.setForeground(hover);	
+			}
+			
+		return this;
+	}
+
+}

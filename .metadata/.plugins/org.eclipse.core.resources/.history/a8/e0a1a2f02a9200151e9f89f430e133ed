@@ -1,0 +1,12 @@
+package logic;
+
+import clock.CallInterface;
+
+public class GameClock implements CallInterface{
+
+	@Override
+	public void call() {
+		
+	}
+	
+}

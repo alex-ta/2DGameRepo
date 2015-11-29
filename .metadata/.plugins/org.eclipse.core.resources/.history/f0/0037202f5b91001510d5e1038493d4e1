@@ -1,0 +1,31 @@
+package menu;
+
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+public class Menu extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 22112015L;
+	private final DefaultListModel<String> model;
+	private final JList<String> list;
+	
+	public Menu(){
+		this.model = new DefaultListModel<String>();
+		this.list = new JList<String>(model);
+	}
+	
+	public void addEntries(String...entries){
+		for(String s: entries){
+			if(this.model.indexOf(s)<0){
+				this.model.addElement(s);
+			}
+		}
+	}
+
+}

@@ -1,0 +1,9 @@
+package menu;
+
+public abstract class MenuListener implements MouseListener {
+
+	public void call(String option){
+		
+	}
+
+}

@@ -1,0 +1,82 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.io.File;
+
+import javax.swing.JFrame;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import clock.Clock;
+import clock.DrawCall;
+import gui.Container;
+import gui.ImageReader;
+import gui.Window;
+import io.Console;
+import io.Reader;
+import io.XMLParser;
+import map.Map;
+import map.Tile;
+import map.Tileset;
+import menu.Menu;
+
+public class Main {
+
+	
+	public static void main(String[] args){
+		new Console();
+		Map map = new Map();
+		map.add(new Tile("img1",false,0,0));
+		map.add(new Tile("img2",false,0,1));
+		map.add(new Tile("img3",false,0,2));
+		map.add(new Tile("img4",false,0,3));
+		
+		Reader parser = new Reader("default.map");
+		parser.save(map);
+		parser.load(map);
+		System.out.println(map.save());
+		Clock clock = new Clock();
+		DrawCall c = new DrawCall();
+		//new Thread(clock).start();
+		clock.addCall(c);
+		
+		
+		Window w = new Window();
+		
+        
+		Container cx = new Container(600,400);
+		
+		ImageReader read = new ImageReader();
+		BufferedImage tile = read.read("128-59.jpg");
+		cx.addTile(tile, 3);
+		
+	
+        
+        XMLParser parser2 = new XMLParser();
+		Document doc = parser2.parse(new File("untitled.tmx"));
+		Element root = doc.getDocumentElement();
+		NodeList list = root.getChildNodes();
+		for(int i=0; i< list.getLength(); i++){
+			System.out.println(list.item(i).getNodeName());
+		}
+		
+		ImageReader r = new ImageReader();
+		BufferedImage ig = r.read("tileset-shinygold.png");
+        Tileset set = new Tileset(ig,16,16);
+        
+        //cx.addTile(set.getTile(10), 0);
+       // cx.addTile(ig,0);
+        w.init(cx);
+
+        /*
+		Menu menu = new Menu();
+		menu.addEntries("Start","Stop","Help");
+		w.init(menu);
+		*/
+	}
+	
+}

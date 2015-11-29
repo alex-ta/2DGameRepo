@@ -1,0 +1,42 @@
+package map;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.util.ArrayList;
+
+public class Tileset {
+	
+
+	private FinalRaster raster;
+	private ArrayList <Tile> tiles = new ArrayList<Tile>();
+	private BufferedImage img;
+	
+	public Tileset(BufferedImage img){
+		this.img = img;
+	}
+	
+	public FinalRaster getRaster() {
+		return raster;
+	}
+
+	public void setRaster(FinalRaster raster) {
+		this.raster = raster;
+	}
+
+	public ArrayList<Tile> getTiles() {
+		return tiles;
+	}
+
+	public void setTiles(ArrayList<Tile> tiles) {
+		this.tiles = tiles;
+	}
+
+	public BufferedImage getImg() {
+		return img;
+	}
+
+	public void setImg(BufferedImage img) {
+		this.img = img;
+	}
+	
+}

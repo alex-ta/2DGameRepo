@@ -1,0 +1,10 @@
+package io;
+
+public class XMLParser{
+
+	public XMLParser(String fileName) {
+		super(fileName);
+		// TODO Auto-generated constructor stub
+	}
+
+}

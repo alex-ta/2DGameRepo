@@ -1,0 +1,47 @@
+package io;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import console.GameConsole;
+
+public class XMLParser{
+	public static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private DocumentBuilder document;
+	
+	public XMLParser(String fileName) {
+		try {
+			document = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			GameConsole.print(e.getMessage());
+		}
+	}
+	
+	public void parse(File file){
+		try {
+			document.parse(file);
+		} catch (SAXException | IOException e) {
+			GameConsole.print(e.getMessage());
+		}
+	}
+	
+	public Document write(String xml){
+		Document d = document.newDocument();
+		Element root = d.createElement("");
+		d.appendChild(root);
+		TransformerFactory factory = TransformerFactory.newInstance();
+		DOMSource source = new DOMSource(d);
+		return d;
+	}
+
+}
